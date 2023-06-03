@@ -2,6 +2,7 @@
 
 import { useSession } from 'next-auth/react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React, { FC, useState } from 'react'
 
@@ -44,7 +45,14 @@ const PromptCard: FC<Props> = ({
   return (
     <div className="prompt_card">
       <div className="flex items-start justify-between gap-5">
-        <div className="flex flex-1 cursor-pointer items-center justify-start gap-3">
+        <Link
+          href={
+            post.creator._id === (session?.user as any)?.id
+              ? '/profile'
+              : `/profile/${post.creator._id}?name=${post.creator.username}`
+          }
+          className="flex flex-1 cursor-pointer items-center justify-start gap-3"
+        >
           <Image
             src={post.creator.image}
             alt="user_image"
@@ -61,7 +69,7 @@ const PromptCard: FC<Props> = ({
               {post.creator.email}
             </p>
           </div>
-        </div>
+        </Link>
         <div className="copy_btn" onClick={handleCopy}>
           <Image
             src={
@@ -85,7 +93,7 @@ const PromptCard: FC<Props> = ({
       </p>
 
       {(session?.user as any)?.id === post.creator._id &&
-      pathName === '/profile' ? (
+        pathName === '/profile' ? (
         <div className="flex-center mt-5 gap-4 border-t border-gray-100 pt-3">
           <p
             className="green_gradient cursor-pointer font-inter text-sm"
