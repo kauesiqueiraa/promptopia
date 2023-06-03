@@ -21,9 +21,10 @@ export default function CreatePrompt() {
     try {
       const response = await fetch('/api/prompt/new', {
         method: 'POST',
+        headers: { 'Content-type': 'application/json' },
         body: JSON.stringify({
-          prompt: post.prompt,
           userId: (session?.user as any).id,
+          prompt: post.prompt,
           tag: post.tag,
         }),
       })

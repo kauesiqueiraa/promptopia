@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { PromptCard } from './PromptCard'
+import PromptCard from './PromptCard'
 
 type Prompt = {
   _id: string

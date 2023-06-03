@@ -19,32 +19,31 @@ const Form: FC<Props> = ({ type, post, setPost, submitting, handleSubmit }) => {
         <span className="blue_gradient">{type} Post</span>
       </h1>
       <p className="desc max-w-md text-left">
-        {type} and share amazing prompts with the wordl, and let your
+        {type} and share amazing prompts with the world, and let your
         imagination run wild with any AI-powered platform
       </p>
 
       <form
-        action=""
         onSubmit={handleSubmit}
         className="glassmorphism mt-10 flex w-full max-w-2xl flex-col gap-7"
       >
-        <label htmlFor="">
+        <label>
           <span className="font-satoshi text-base font-semibold text-gray-700">
-            Your Ai Prompt
+            Your AI Prompt
           </span>
 
           <textarea
             value={post.prompt}
             onChange={(e) => setPost({ ...post, prompt: e.target.value })}
-            placeholder="Write yout prompt here..."
+            placeholder="Write your prompt here..."
             required
             className="form_textarea"
           />
         </label>
 
-        <label htmlFor="">
+        <label>
           <span className="font-satoshi text-base font-semibold text-gray-700">
-            Tag {` `}
+            Tag{' '}
             <span className="font-normal">
               (#product, #webdevelopment, #idea)
             </span>

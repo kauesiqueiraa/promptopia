@@ -25,7 +25,7 @@ type Props = {
   handleDelete?: (post: Prompt) => void
 }
 
-export const PromptCard: FC<Props> = ({
+const PromptCard: FC<Props> = ({
   post,
   handleTagClick,
   handleEdit,
@@ -71,7 +71,7 @@ export const PromptCard: FC<Props> = ({
             }
             width={12}
             height={12}
-            alt="Copy"
+            alt={copied === post.prompt ? 'tick_icon' : 'copy_icon'}
           />
         </div>
       </div>
@@ -81,26 +81,28 @@ export const PromptCard: FC<Props> = ({
         className="blue_gradient cursor-pointer font-inter text-sm"
         onClick={() => handleTagClick && handleTagClick(post.tag)}
       >
-        {post.tag}
+        {post.tag.startsWith('#', 0) ? post.tag : `#${post.tag}`}
       </p>
 
-      {(session?.user as any).id === post.creator._id &&
-        pathName === '/profile' && (
-          <div className="flex-center mt-5 gap-4 border-t border-gray-100 pt-3">
-            <p
-              className="green_gradient cursor-pointer font-inter text-sm"
-              onClick={() => handleEdit && handleEdit(post)}
-            >
-              Edit
-            </p>
-            <p
-              className="orange_gradient cursor-pointer font-inter text-sm"
-              onClick={() => handleDelete && handleDelete(post)}
-            >
-              Delete
-            </p>
-          </div>
-        )}
+      {(session?.user as any)?.id === post.creator._id &&
+      pathName === '/profile' ? (
+        <div className="flex-center mt-5 gap-4 border-t border-gray-100 pt-3">
+          <p
+            className="green_gradient cursor-pointer font-inter text-sm"
+            onClick={() => handleEdit && handleEdit(post)}
+          >
+            Edit
+          </p>
+          <p
+            className="orange_gradient cursor-pointer font-inter text-sm"
+            onClick={() => handleDelete && handleDelete(post)}
+          >
+            Delete
+          </p>
+        </div>
+      ) : null}
     </div>
   )
 }
+
+export default PromptCard
