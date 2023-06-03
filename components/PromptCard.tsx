@@ -93,7 +93,7 @@ const PromptCard: FC<Props> = ({
       </p>
 
       {(session?.user as any)?.id === post.creator._id &&
-        pathName === '/profile' ? (
+      pathName === '/profile' ? (
         <div className="flex-center mt-5 gap-4 border-t border-gray-100 pt-3">
           <p
             className="green_gradient cursor-pointer font-inter text-sm"

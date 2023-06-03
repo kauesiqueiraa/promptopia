@@ -27,12 +27,12 @@ const PromptCardList = ({
     <div className="prompt_layout mt-16">
       {data.length >= 1
         ? data.map((post) => (
-          <PromptCard
-            key={post._id}
-            post={post}
-            handleTagClick={handleTagClick}
-          />
-        ))
+            <PromptCard
+              key={post._id}
+              post={post}
+              handleTagClick={handleTagClick}
+            />
+          ))
         : null}
     </div>
   )
